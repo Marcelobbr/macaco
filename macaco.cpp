@@ -1,15 +1,19 @@
 #include <iostream>
-#include <iomanip>
-
+//#include <iomanip>
 using namespace std;
 
 extern "C" {
-
-// A function adding two integers and returning the result
+    
 int SampleAddInt(int i1, int i2)    {
 	return i1 + i2;
 }
-	
+
+//int* type_test(char *str1,int id1,char *str2,float val,float *ls) {
+//    int a = val;
+//    return *a;
+//}
+
+
 struct Node {
     int data;
     Node *pChild[2];
@@ -78,35 +82,26 @@ private:
     void print(Node *p, int indent=0) {
         if (p) {
             print(p->pChild[1], indent+6);
-            cout << setw(indent) << ' ';
+            //cout << setw(indent) << ' ';
             cout<< p->data <<endl;
             print(p->pChild[0], indent+6);
         }
     }
 };
-	
+
+void dataframe(int array[], int size){ //similar to linspace from hw1
+    for (int i = 0; i < size; i++){
+        array[i]=1+10000*i;
+    }}
+ 
+double get_avg(int arr[], int size) {
+  int i, sum = 0;       
+  double avg;          
+   for (i = 0; i < size; ++i) {
+      sum += arr[i];
+   }
+   avg = double(sum) / size;
+   cout << "Average value is: " << avg << endl; 
+   return avg;
 }
-/* 
-int main() {
-    BST bst;
-    bst.insert(6);
-    bst.insert(4);
-    bst.insert(7);
-    bst.insert(2);
-    bst.insert(5);
-    bst.insert(1);
-    bst.insert(3);
-    bst.print();
-
-    cout << "-----------------\n";
-    bst.remove(4);
-    bst.print();
-
-    bst.remove(3);
-    bst.print();
-
-    bst.remove(6);
-    bst.print();
-
-    return 0;
-} */
+}
