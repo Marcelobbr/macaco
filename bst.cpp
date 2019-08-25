@@ -3,6 +3,13 @@
 
 using namespace std;
 
+extern "C" {
+
+// A function adding two integers and returning the result
+int SampleAddInt(int i1, int i2)    {
+	return i1 + i2;
+}
+	
 struct Node {
     int data;
     Node *pChild[2];
@@ -77,7 +84,9 @@ private:
         }
     }
 };
-
+	
+}
+/* 
 int main() {
     BST bst;
     bst.insert(6);
@@ -100,4 +109,4 @@ int main() {
     bst.print();
 
     return 0;
-}
+} */
