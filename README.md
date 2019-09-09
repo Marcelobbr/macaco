@@ -1,6 +1,4 @@
 # macaco
-This is a final project related to the class Estrutura de Dadose Algoritmos at [EMAp-FGV](https://emap.fgv.br), ministered by professor Jorge Poco.
-
 In this project we have built a C++ library that provides an interface similar to Pandas package in Python.
 A DataFrame can have one index column and many data columns of any built-in or user-defined type.
 
@@ -16,9 +14,10 @@ Here is a list of allowed operations:
 * [Lucas]()
 * [Marcelo B. Barata Ribeiro](https://www.linkedin.com/in/marcelo-barata-ribeiro-213b8733/)
 
-# Background
+## Background
+This is a final project related to the class Estrutura de Dadose Algoritmos at [EMAp-FGV](https://emap.fgv.br), ministered by professor Jorge Poco.
 
-# Files List
+## Files List
 * 
 * 
 * 
