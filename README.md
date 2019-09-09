@@ -59,17 +59,23 @@ For C++ programming language, here are packages which are necessary for the prog
 * pybind11==2.3.0
 
 To compile c++ on ubuntu, go to terminal by pressing Ctr+Shift+T and type:
-    g++ -std=c++17 <filename>.cpp
-    ./a.out
-	<-std=c++17> is optional, it defines the version of c++ to c++17. Otherwise is uses c++11as standard.
+```sh
+g++ -std=c++17 <filename>.cpp
+./a.out
+```
+<-std=c++17> is optional. It defines the version of c++ to c++17. Otherwise is uses c++11 as standard.
 
 There are two Linux C/C++ library types that can be created. Those are Static libraries (.a) and Dynamically linked shard object libraries (.so). Here we worked with shared libraries.
 
 To generate a shared library:
 ```sh
 g++ -shared -o <foo>.so -fPIC <your_cpp_file>.cpp
+```
+OR
+```sh
 g++ -Wall -fPIC -shared <your_cpp_file>.cpp -o <foo>.so
 ```
+
 But to make life easier for you, we have build an .sh file which you just need to compile so that you generate an .so file which will be imported by python. To run this .sh file, type on terminal on the corresponding folder:
 ```sh
 bash <name_of_sh_file>.sh
