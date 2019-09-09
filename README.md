@@ -2,6 +2,9 @@
 In this project we have built a C++ library that provides an interface similar to Pandas package in Python.
 A DataFrame can have one index column and many data columns of any built-in or user-defined type.
 
+**macaco** should be used inside Python. Because it is  optimized in C++, it should provide much faster data
+structures which are allowed in pure Python. 
+
 ## Main Features
 Here is a list of allowed operations:
 * insertion
@@ -11,11 +14,11 @@ Here is a list of allowed operations:
 
 
 ## Team members
-* [Lucas]()
+* Lucas
 * [Marcelo B. Barata Ribeiro](https://www.linkedin.com/in/marcelo-barata-ribeiro-213b8733/)
 
 ## Background
-This is a final project related to the class Estrutura de Dadose Algoritmos at [EMAp-FGV](https://emap.fgv.br), ministered by professor Jorge Poco.
+This is a final project related to the class Estrutura de Dados e Algoritmos at [EMAp-FGV](https://emap.fgv.br), ministered by professor Jorge Poco.
 
 ## Files List
 * 
@@ -35,6 +38,8 @@ Or simply activate the jupyter notebook.
 There, all configuration of macaco is imported as mc.
 
 ## Requirements
+If you are used to Linux and Python, this section isn't necessary, except in case of any malfunctioning or low experience with those softwares.
+
 ### Operating System
 All the system was built using Linux Ubuntu. We strongly recommend that you also use a Linux Distribution or at least an OS from Unix family. In case you are using Windows, we suggest you to operate inside a Virtual Machine. Just follow one of the guides below:
 * [lifewire guide](https://www.lifewire.com/run-ubuntu-within-windows-virtualbox-2202098)
@@ -82,17 +87,20 @@ sudo apt-get install libboost-all-dev
 ```
 Learning how to use pyboost isn't necessary, because all the scripts which use it are already built, but if you want to learn how it works, just follow [this link](https://www.boost.org/doc/libs/1_68_0/libs/python/doc/html/tutorial/index.html#tutorial.quickstart) which has documentation and tutorial.
 
-	
-    
-    tutorial
-        
 
 ### Python
 We chose Python3 version of Python, while the standard version from Ubuntu is Python2. As there are some differences between the two versions, we suggest that you install python3. Anaconda is pretty handy to work with python, but it is not vital in this case, as we are not using any external Python package.
 
 ## Looking Forward
-The indexations of data was done with Binary-Search Tree Algorithm
-red-black trees
-kd tree - para coordenadas
-geolocated data
-datetime
+Here are some improvements which could be made:
+* Code refactoring: columns accept strings, ints and floats, but there should be a less verbose way to do it instead of our c++ code.
+* Optimized indexation: The indexation was done by using Binary-Search tree algorithm, but there are other algorithms which guarantee a more balanced tree, reducing runtime, such as Red-black trees and B-trees. 
+* Handling of missing data (represented as NaN) in floating point as well as non-floating point data
+* Powerful, flexible group by functionality to perform split-apply-combine operations on data sets, for both aggregating and transforming data
+* Make it easy to convert ragged, differently-indexed data in other Python and NumPy data structures into DataFrame objects
+* Intuitive merging and joining data sets
+* Flexible reshaping and pivoting of data sets
+* Column labeling
+* Robust IO tools for loading data from flat files (CSV and delimited), Excel files and SQL databases
+* Time series functionalities: handling of datetime, timeframe, date shifting and lagging, etc.
+* geolocated data: some solution to work on geolocated data, preferably by using k-d trees, which are a better optimization solution.
