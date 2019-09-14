@@ -12,51 +12,30 @@
 using namespace std;
 
 //START OF HEADER
-template<typename T>
+template<typename Tnodes>
 struct Node {
-    T data;
+    Tnodes data;
     std::set<int> rows;
 
     Node *pChild[2];
-    Node(T x):data(x) {
+    Node(Tnodes x):data(x) {
         pChild[0] = pChild[1] = nullptr;
     }
 };
 
-template<typename Tc>
+template<typename Ttrees>
 class treeIndexing {
-protected:
-    Node<Tc> *pRoot;
 public:
+	Node<Ttrees> *pRoot;
     treeIndexing():pRoot(nullptr) {}
 
-    bool find_node(Tc x) {
-        Node<Tc> **p;
+    bool find_node(Ttrees x) {
+        Node<Ttrees> **p;
         return find(x, p);
     }
 
-    std::set<int> get_node_rows(Tc x) {
-        Node<Tc> **p;
-        find(x, p);
-        return (*p)->rows;
-    }
-
-    void insert_node_with_row(Tc x, int row) {
-        Node<Tc> **p;
-        if (!find(x, p)) {
-            *p = new Node<Tc>(x);
-        }
-        (*p)->rows.insert(row);
-    }
-
-    void insert_node(Tc x) {
-        Node<Tc> **p;
-        if (!find(x, p)) {
-            *p = new Node<Tc>(x);
-        }
-    }
-    void remove(Tc x) {
-        Node<Tc> **p;
+    void remove(Ttrees x) {
+        Node<Ttrees> **p;
         if(find(x, p))
             remove(*p);
     }
@@ -66,8 +45,28 @@ public:
         cout << endl;
     }
 
+    std::set<int> locateRow(Ttrees nd) {
+        Node<Ttrees> **p;
+        find(nd, p);
+        return (*p)->rows;
+    }
+
+    void insertRow(Ttrees nd, int row) {
+        Node<Ttrees> **p;
+        if (!find(nd, p)) {
+            *p = new Node<Ttrees>(nd);
+        }
+        (*p)->rows.insert(row);
+    }
+
+    void insertNode(Ttrees nd) {
+        Node<Ttrees> **p;
+        if (!find(nd, p)) {
+            *p = new Node<Ttrees>(nd);
+        }
+    }
 private:
-    bool find(Tc x, Node<Tc> **&p) {
+    bool find(Ttrees x, Node<Ttrees> **&p) {
         p = &pRoot;
         while(*p) {
             if ((*p)->data==x) return true;
@@ -78,33 +77,44 @@ private:
         return false;
     }
 
-    void remove(Node<Tc> *&p) {
+    void remove(Node<Ttrees> *&p) {
         if (!p->pChild[0] || !p->pChild[1])
             p = p->pChild[p->pChild[1]!=nullptr];
 
         else {
-            Node<Tc> **succesor = &(p->pChild[1]);
+            Node<Ttrees> **succesor = &(p->pChild[1]);
             find_min(succesor);
             p->data = (*succesor)->data;
             remove(*succesor);
         }
     }
 
-    void find_min(Node<Tc> **&p) {
+    void find_min(Node<Ttrees> **&p) {
 
         while((*p)->pChild[0]){
             p = &((*p)->pChild[0]);
         }
     }
-
-    void print(Node<Tc> *p, int indent=0) {
-        if (p) {
-            print(p->pChild[1], indent+6);
-            cout << setw(indent) << ' ';
-            cout<< p->data <<endl;
-            print(p->pChild[0], indent+6);
-        }
-    }
+	
+	void print(Node<Ttrees> *p, int indent=0) {
+	        if (p) {
+	            print(p->pChild[1], indent+6);
+	            cout << setw(indent) << ' ';
+	            cout<< p->data <<endl;
+	            print(p->pChild[0], indent+6);
+	        }
+	}
 };
 
 //END OF HEADER
+
+
+//template<typename Ttrees>
+//void treeIndexing::print(Node<Ttrees> *p, int indent=0) {
+//        if (p) {
+//            print(p->pChild[1], indent+6);
+//            cout << setw(indent) << ' ';
+//            cout<< p->data <<endl;
+//            print(p->pChild[0], indent+6);
+//        }
+//}
