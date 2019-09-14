@@ -8,64 +8,20 @@
 #include <boost/python.hpp>
 #include <boost/python/list.hpp>
 #include <boost/python/extract.hpp>
-
 using namespace std;
-
+//this is a BST algorithm to optimize indexation whose methods are imported and used by dfbuilder.cpp. Next step would be to develop a red-black tree.
 //START OF HEADER
 template<typename Tnodes>
 struct Node {
     Tnodes data;
-    std::set<int> rows;
-
     Node *pChild[2];
     Node(Tnodes x):data(x) {
         pChild[0] = pChild[1] = nullptr;
     }
+	std::set<int> rows;
 };
-
 template<typename Ttrees>
 class treeIndexing {
-public:
-	Node<Ttrees> *pRoot;
-    treeIndexing():pRoot(nullptr) {}
-
-    bool find_node(Ttrees x) {
-        Node<Ttrees> **p;
-        return find(x, p);
-    }
-
-    void remove(Ttrees x) {
-        Node<Ttrees> **p;
-        if(find(x, p))
-            remove(*p);
-    }
-
-    void print() {
-        print(pRoot);
-        cout << endl;
-    }
-
-    std::set<int> locateRow(Ttrees nd) {
-        Node<Ttrees> **p;
-        find(nd, p);
-        return (*p)->rows;
-    }
-
-    void insertRow(Ttrees nd, int row) {
-        Node<Ttrees> **p;
-        if (!find(nd, p)) {
-            *p = new Node<Ttrees>(nd);
-        }
-        (*p)->rows.insert(row);
-    }
-
-    void insertNode(Ttrees nd) {
-        Node<Ttrees> **p;
-        if (!find(nd, p)) {
-            *p = new Node<Ttrees>(nd);
-        }
-    }
-private:
     bool find(Ttrees x, Node<Ttrees> **&p) {
         p = &pRoot;
         while(*p) {
@@ -104,6 +60,46 @@ private:
 	            print(p->pChild[0], indent+6);
 	        }
 	}
+
+public:
+	Node<Ttrees> *pRoot; treeIndexing():pRoot(nullptr) {}
+
+    bool find_node(Ttrees x) {
+        Node<Ttrees> **p;
+        return find(x, p);
+    }
+
+    void remove(Ttrees x) {
+        Node<Ttrees> **p;
+        if(find(x, p))
+            remove(*p);
+    }
+
+    void print() {
+        print(pRoot);
+        cout << endl;
+    }
+
+    std::set<int> locateRow(Ttrees nd) {
+        Node<Ttrees> **p;
+        find(nd, p);
+        return (*p)->rows;
+    }
+
+    void insertRow(Ttrees nd, int row) {
+        Node<Ttrees> **p;
+        if (!find(nd, p)) {
+            *p = new Node<Ttrees>(nd);
+        }
+        (*p)->rows.insert(row);
+    }
+
+    void insertNode(Ttrees nd) {
+        Node<Ttrees> **p;
+        if (!find(nd, p)) {
+            *p = new Node<Ttrees>(nd);
+        }
+    }
 };
 
 //END OF HEADER
