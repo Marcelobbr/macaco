@@ -7,11 +7,14 @@ structures which are allowed in pure Python.
 
 ## Main Features
 Here is a list of allowed operations:
-* insertion
-* deletion
-* find
-
-
+* insert(array_values,column_name): inserts a new column
+* remove(column_name): deletes a specific column
+* tolist(column_name): shows list of values from a specific column
+* locateCel(column_name): shows value from a specific cell
+* locateRow(column_name): shows list of values from a specific row
+* toIndxCol(self, column): indexes column values using optimization algorithm from Binary-Search Tree
+* show(): shows all table data in a way very similar to pandas dataframe
+* plot(columnA, columnB):  plots a 2d graphic using data from 2 columns
 
 ## Team members
 * Lucas
@@ -21,9 +24,13 @@ Here is a list of allowed operations:
 This is a final project related to the class Estrutura de Dados e Algoritmos at [EMAp-FGV](https://emap.fgv.br), ministered by professor Jorge Poco.
 
 ## Files List
-* 
-* 
-* 
+* macaco.py: main module which imports c++ functionalities and translate them to python syntax. 
+* test_from_macaco.ipynb: jupyter notebook file which imports macaco.py and does tests with all macaco methods to verify its functionalities
+* test_from_note.ipynb: similar to the version above, but the methods are built inside the notebook. It is a better alternative than above to prototype new methods.
+* dfbuilder.cpp: main C++ file whose functionalities macaco.py imports
+* treeIndexing.cpp: BST algorithm to optimize indexation whose methods are imported and used by dfbuilder.cpp
+* gen_shared_lib.sh: a compiler which compiles c++ code to shared library. It compiles dfbuilder.cpp
+* dfbuilder.so: the resulting shared library from the gen_shared_lib.sh compilation
 
 ## How to run it
 In spite of all the dependencies of C++, the .so file is already built for you. In case of malfunctioning, we strongly recommend that you fully read the Requirements section below.
@@ -52,11 +59,11 @@ In Ubuntu, you will see that both C++ and Python are already installed, which is
 
 ### C++
 
-For C++ programming language, here are packages which are necessary for the program to run correctly:
+<!-- For C++ programming language, here are packages which are necessary for the program to run correctly:
 * cppimport==18.11.8
 * Mako==1.1.0
 * MarkupSafe==1.1.1
-* pybind11==2.3.0
+* pybind11==2.3.0 -->
 
 To compile c++ on ubuntu, go to terminal by pressing Ctr+Shift+T and type:
 ```sh
@@ -69,21 +76,19 @@ There are two Linux C/C++ library types that can be created. Those are Static li
 
 To generate a shared library:
 ```sh
-g++ -shared -o <foo>.so -fPIC <your_cpp_file>.cpp
-```
-OR
-```sh
-g++ -Wall -fPIC -shared <your_cpp_file>.cpp -o <foo>.so
+g++ -std=c++17 -I /usr/include/python3.6 -fpic -c -o <your_cpp_file>.o <your_cpp_file>.cpp
+g++ -o <your_cpp_file>.so -shared <your_cpp_file>.o -lboost_python3
 ```
 
-But to make life easier for you, we have build an .sh file which you just need to compile so that you generate an .so file which will be imported by python. To run this .sh file, type on terminal on the corresponding folder:
+But to make life easier for you, we have already built an .sh file which you just need to compile so that you generate a .so file which will be imported by python. To run this .sh file, type on terminal on the corresponding folder:
 ```sh
 bash <name_of_sh_file>.sh
 ```
-We named this .sh file as compile_pyboost, but you should confirm it yourself.
+Our naming conventions for the cpp file and the .sh file (but you should confirm it yourself):
+* `dfbuild.cpp`
+* `gen_shared_lib.sh`
 
 If you need more details about shared libraries, check [this link](https://helloacm.com/calling-c-shared-library-from-python-code-linux-version/)
-
 
 #### pyboost package
 pyboost package was essential for this project and its instalation is also a requirement.
@@ -103,10 +108,9 @@ Here are some improvements which could be made:
 * Optimized indexation: The indexation was done by using Binary-Search tree algorithm, but there are other algorithms which guarantee a more balanced tree, reducing runtime, such as Red-black trees and B-trees. 
 * Handling of missing data (represented as NaN) in floating point as well as non-floating point data
 * Powerful, flexible group by functionality to perform split-apply-combine operations on data sets, for both aggregating and transforming data
-* Make it easy to convert ragged, differently-indexed data in other Python and NumPy data structures into DataFrame objects
+* Make it easy to convert differently-indexed data in other Python and NumPy data structures into DataFrame objects
 * Intuitive merging and joining data sets
 * Flexible reshaping and pivoting of data sets
-* Column labeling
 * Robust IO tools for loading data from flat files (CSV and delimited), Excel files and SQL databases
 * Time series functionalities: handling of datetime, timeframe, date shifting and lagging, etc.
 * geolocated data: some solution to work on geolocated data, preferably by using k-d trees, which are a better optimization solution.
