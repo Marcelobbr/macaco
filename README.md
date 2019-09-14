@@ -35,10 +35,10 @@ This is a final project related to the class Estrutura de Dados e Algoritmos at 
 ## How to run it
 In spite of all the dependencies of C++, the .so file is already built for you. In case of malfunctioning, we strongly recommend that you fully read the Requirements section below.
 
-There is a python test file for you to test the program. It's name is test.ipynb. It's easier to do your own tests using jupyter notebook, but if you prefer to use pure python, just run the corresponding .py file. 
-To run the python file, run on terminal
+There is a python test file for you to test the program. It's name is test_from_macaco.ipynb. It's easier to do your own tests using jupyter notebook, but if you prefer to use pure python, just run the corresponding .py file. 
+To run the python file, run on terminal:
 ```sh
-python3 hello.py
+python3 test.py
 ```
 Or simply activate the jupyter notebook.
 
