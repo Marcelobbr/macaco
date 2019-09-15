@@ -5,12 +5,17 @@
 
 #include <iomanip>
 #include <initializer_list>
+
 #include <boost/python.hpp>
 #include <boost/python/list.hpp>
 #include <boost/python/extract.hpp>
+
 using namespace std;
+
 //this is a BST algorithm to optimize indexation whose methods are imported and used by dfbuilder.cpp. Next step would be to develop a red-black tree.
+
 //START OF HEADER
+
 template<typename Tnodes>
 struct Node {
     Tnodes data;

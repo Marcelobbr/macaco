@@ -7,12 +7,12 @@ structures which are allowed in pure Python.
 
 ## Main Features
 Here is a list of allowed operations:
-* insert(array_values,column_name): inserts a new column
+* insert(column_name, array_values): inserts a new column
 * remove(column_name): deletes a specific column
 * tolist(column_name): shows list of values from a specific column
 * locateCel(column_name): shows value from a specific cell
 * locateRow(column_name): shows list of values from a specific row
-* toIndxCol(self, column): indexes column values using optimization algorithm from Binary-Search Tree
+* toIndxCol(column): indexes column values using optimization algorithm from Binary-Search Tree
 * show(): shows all table data in a way very similar to pandas dataframe
 * plot(columnA, columnB):  plots a 2d graphic using data from 2 columns
 
@@ -101,6 +101,17 @@ Learning how to use pyboost isn't necessary, because all the scripts which use i
 
 ### Python
 We chose Python3 version of Python, while the standard version from Ubuntu is Python2. As there are some differences between the two versions, we suggest that you install python3. Anaconda is pretty handy to work with python, but it is not vital in this case, as we are not using any external Python package.
+
+To work with some files, such as test_from_macaco.ipynb and  test_from_note.ipynb, it is necessary to have jupyter notebook installed on your system. To install it, go to terminal and type:
+```sh
+sudo apt update
+pip install jupyter
+```
+Then go to your worspace folder with .ipynb files  and initialize jupyter notebook by doing
+```sh
+cd <your/folder/name>
+jupyter notebook
+```
 
 ## Looking Forward
 Here are some improvements which could be made:
