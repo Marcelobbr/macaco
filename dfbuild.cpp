@@ -32,9 +32,9 @@ struct dfbuild{
     std::map<std::string,treeIndexing<int>> int_trees;
     std::map<std::string,treeIndexing<double>> double_trees;
     std::map<std::string,treeIndexing<std::string>> string_trees;
-    void insertColInt(std::string col_name,  boost::python::list& l){
-    std::vector<int> X;
-    int token;
+    void insertColInt(std::string col_name,  boost::python::list& l)
+    {
+    std::vector<int> X; int token;
     for (int i = 0; i < len(l);){
         token = boost::python::extract<int>(l[i++]);
         X.push_back(token);
@@ -44,9 +44,9 @@ struct dfbuild{
     
     
     
-    void insertColDbl(std::string col_name,  boost::python::list& l){
-    std::vector<double> X;
-    double token;
+    void insertColDbl(std::string col_name,  boost::python::list& l)
+    {
+    std::vector<double> X; double token;
     for (int i = 0; i < len(l);){
         token = boost::python::extract<double>(l[i++]);
         X.push_back(token);
@@ -56,9 +56,9 @@ struct dfbuild{
 
     
     
-    void insertColStr(std::string col_name,  boost::python::list& l){
-    std::vector<std::string> X;
-    std::string token;
+    void insertColStr(std::string col_name,  boost::python::list& l)
+    {
+    std::vector<std::string> X; std::string token;
     for (int i = 0; i < len(l);){
         token = boost::python::extract<std::string>(l[i++]);
         X.push_back(token);
@@ -68,25 +68,29 @@ struct dfbuild{
     
     
     
-    void removeColInt(std::string col_name,  boost::python::list& l){
+    void removeColInt(std::string col_name,  boost::python::list& l)
+    {
     col_int.erase(col_name);
     }
     
     
 
-    void removeColDbl(std::string col_name,  boost::python::list& l){
+    void removeColDbl(std::string col_name,  boost::python::list& l)
+    {
         col_double.erase(col_name);
     }
 
 
 
-    void removeColStr(std::string col_name,  boost::python::list& l){
+    void removeColStr(std::string col_name,  boost::python::list& l)
+    {
         col_string.erase(col_name);
     }
 
 
 
-    boost::python::list locateColInt(std::string col_name){
+    boost::python::list locateColInt(std::string col_name)
+    {
         boost::python::list l;
         for (auto i: col_int[col_name])    {
             l.append(i);
@@ -96,7 +100,8 @@ struct dfbuild{
 
 
 
-    boost::python::list locateColDbl(std::string col_name){
+    boost::python::list locateColDbl(std::string col_name)
+    {
         boost::python::list l;
         for (auto i: col_double[col_name])    {
             l.append(i);
@@ -106,7 +111,8 @@ struct dfbuild{
 
 
 
-    boost::python::list locateColStr(std::string col_name){
+    boost::python::list locateColStr(std::string col_name)
+    {
         boost::python::list l;
         for (auto i: col_string[col_name])    {
             l.append(i);
@@ -116,9 +122,9 @@ struct dfbuild{
 
 
 
-    boost::python::list locateRowInt(std::string col_name,  boost::python::list & rows){
-        int row;
-        boost::python::list result;
+    boost::python::list locateRowInt(std::string col_name,  boost::python::list & rows)
+    {
+        int row; boost::python::list result;
         for (int i = 0; i < len(rows) ;){
             row = boost::python::extract<int>(rows[i++]);
             result.append(col_int[col_name][row]);
@@ -128,9 +134,9 @@ struct dfbuild{
 
 
 
-    boost::python::list locateRowDbl(std::string col_name,  boost::python::list & rows){
-        int row;
-        boost::python::list result;
+    boost::python::list locateRowDbl(std::string col_name,  boost::python::list & rows)
+    {
+        int row; boost::python::list result;
         for (int i = 0; i < len(rows) ;){
             row = boost::python::extract<int>(rows[i++]);
             result.append(col_double[col_name][row]);
@@ -140,9 +146,9 @@ struct dfbuild{
 
 
 
-    boost::python::list locateRowStr(std::string col_name,  boost::python::list & rows){
-        int row;
-        boost::python::list result;
+    boost::python::list locateRowStr(std::string col_name,  boost::python::list & rows)
+    {
+        int row; boost::python::list result;
         for (int i = 0; i < len(rows) ;){
             row = boost::python::extract<int>(rows[i++]);
             result.append(col_string[col_name][row]);
@@ -176,7 +182,8 @@ struct dfbuild{
 
 
 
-    void toIndxColInt(std::string col_name,  boost::python::list & l){
+    void toIndxColInt(std::string col_name,  boost::python::list & l)
+    {
         treeIndexing<int> tree;
         for (int i = 0; i < col_int[col_name].size(); i)    {
             tree.insertRow(col_int[col_name][i],i++);
@@ -186,7 +193,8 @@ struct dfbuild{
 
 
 
-    void toIndxColDbl(std::string col_name,  boost::python::list & l){
+    void toIndxColDbl(std::string col_name,  boost::python::list & l)
+    {
         treeIndexing<double> tree;
         for (int i = 0; i < col_double[col_name].size(); i)    {
             tree.insertRow(col_double[col_name][i],i++);
@@ -196,7 +204,8 @@ struct dfbuild{
 
 
 
-    void toIndxColStr(std::string col_name,  boost::python::list & l){
+    void toIndxColStr(std::string col_name,  boost::python::list & l)
+    {
         treeIndexing<std::string> tree;
         for (int i = 0; i < col_string[col_name].size(); i)    {
             tree.insertRow(col_string[col_name][i],i++);

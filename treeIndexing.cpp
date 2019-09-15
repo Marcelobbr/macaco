@@ -91,9 +91,11 @@ public:
     //     return (*p)->rows;
     // }
 
-    void insertRow(Ttrees nd, int row) {
+    void insertRow(Ttrees nd, int row) 
+    {
         Node<Ttrees> **p;
-        if (!find(nd, p)) {
+        if (!find(nd, p)) 
+        {
             *p = new Node<Ttrees>(nd);
         }
         (*p)->rows.insert(row);
