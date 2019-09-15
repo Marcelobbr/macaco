@@ -152,27 +152,27 @@ struct dfbuild{
 
 
 
-    void insertRowInt(std::string col_name,  boost::python::list& l){
-        for (int i = 0; i < len(l) ;){
-               col_int[col_name].push_back(boost::python::extract<int>(l[i++]));
-           }
-    }
+    // void insertRowInt(std::string col_name,  boost::python::list& l){
+    //     for (int i = 0; i < len(l) ;){
+    //            col_int[col_name].push_back(boost::python::extract<int>(l[i++]));
+    //        }
+    // }
 
 
 
-    void insertRowDbl(std::string col_name,  boost::python::list& l){
-        for (int i = 0; i < len(l) ;){
-               col_double[col_name].push_back(boost::python::extract<double>(l[i++]));
-           }
-    }
+    // void insertRowDbl(std::string col_name,  boost::python::list& l){
+    //     for (int i = 0; i < len(l) ;){
+    //            col_double[col_name].push_back(boost::python::extract<double>(l[i++]));
+    //        }
+    // }
 
 
 
-    void insertRowStr(std::string col_name,  boost::python::list& l){
-        for (int i = 0; i < len(l) ;){
-               col_string[col_name].push_back(boost::python::extract<std::string>(l[i++]));
-           }
-    }
+    // void insertRowStr(std::string col_name,  boost::python::list& l){
+    //     for (int i = 0; i < len(l) ;){
+    //            col_string[col_name].push_back(boost::python::extract<std::string>(l[i++]));
+    //        }
+    // }
 
 
 
@@ -206,57 +206,57 @@ struct dfbuild{
 
 
 
-    boost::python::list GetNodeRowsInt(std::string col_name,  boost::python::list & nodes){
-        boost::python::list result;
-        int X;
-        std::set<int> Y;
-        std::vector<int> partial;
-        for (int i = 0; i < len(nodes) ;){
-            X = boost::python::extract<int>(nodes[i++]);
-            Y = int_trees[col_name].locateRow(X);
-            partial.insert(partial.end(), Y.begin(), Y.end());
-        }
-        for (int i = 0; i < partial.size() ;)    {
-            result.append(partial[i++]);
-        }
-        return result;
-    }
+    // boost::python::list GetNodeRowsInt(std::string col_name,  boost::python::list & nodes){
+    //     boost::python::list result;
+    //     int X;
+    //     std::set<int> Y;
+    //     std::vector<int> partial;
+    //     for (int i = 0; i < len(nodes) ;){
+    //         X = boost::python::extract<int>(nodes[i++]);
+    //         Y = int_trees[col_name].locateRow(X);
+    //         partial.insert(partial.end(), Y.begin(), Y.end());
+    //     }
+    //     for (int i = 0; i < partial.size() ;)    {
+    //         result.append(partial[i++]);
+    //     }
+    //     return result;
+    // }
 
 
 
-    boost::python::list GetNodeRowsDbl(std::string col_name,  boost::python::list & nodes){
-        boost::python::list result;
-        double X;
-        std::set<int> Y;
-        std::vector<int> partial;
-        for (int i = 0; i < len(nodes) ;){
-            X = boost::python::extract<double>(nodes[i++]);
-            Y = double_trees[col_name].locateRow(X);
-            partial.insert(partial.end(), Y.begin(), Y.end());
-        }
-        for (int i = 0; i < partial.size() ;)    {
-            result.append(partial[i++]);
-        }
-        return result;
-    }
+    // boost::python::list GetNodeRowsDbl(std::string col_name,  boost::python::list & nodes){
+    //     boost::python::list result;
+    //     double X;
+    //     std::set<int> Y;
+    //     std::vector<int> partial;
+    //     for (int i = 0; i < len(nodes) ;){
+    //         X = boost::python::extract<double>(nodes[i++]);
+    //         Y = double_trees[col_name].locateRow(X);
+    //         partial.insert(partial.end(), Y.begin(), Y.end());
+    //     }
+    //     for (int i = 0; i < partial.size() ;)    {
+    //         result.append(partial[i++]);
+    //     }
+    //     return result;
+    // }
 
 
 
-    boost::python::list GetNodeRowsStr(std::string col_name,  boost::python::list & nodes){
-        boost::python::list result;
-        std::string X;
-        std::set<int> Y;
-        std::vector<int> partial;
-        for (int i = 0; i < len(nodes) ;){
-            X = boost::python::extract<std::string>(nodes[i++]);
-            Y = string_trees[col_name].locateRow(X);
-            partial.insert(partial.end(), Y.begin(), Y.end());
-        }
-        for (int i = 0; i < partial.size() ;)    {
-            result.append(partial[i++]);
-        }
-        return result;
-    }
+    // boost::python::list GetNodeRowsStr(std::string col_name,  boost::python::list & nodes){
+    //     boost::python::list result;
+    //     std::string X;
+    //     std::set<int> Y;
+    //     std::vector<int> partial;
+    //     for (int i = 0; i < len(nodes) ;){
+    //         X = boost::python::extract<std::string>(nodes[i++]);
+    //         Y = string_trees[col_name].locateRow(X);
+    //         partial.insert(partial.end(), Y.begin(), Y.end());
+    //     }
+    //     for (int i = 0; i < partial.size() ;)    {
+    //         result.append(partial[i++]);
+    //     }
+    //     return result;
+    // }
 };
 
 
@@ -269,23 +269,23 @@ BOOST_PYTHON_MODULE(dfbuild) {
 	.def("locateColInt", &dfbuild::locateColInt)
 	.def("removeColInt", &dfbuild::removeColInt)
 	.def("locateRowInt", &dfbuild::locateRowInt)
-	.def("insertRowInt", &dfbuild::insertRowInt)
+	// .def("insertRowInt", &dfbuild::insertRowInt)
 	.def("toIndxColInt", &dfbuild::toIndxColInt)
 	.def("insertColDbl", &dfbuild::insertColDbl)
 	.def("locateColDbl", &dfbuild::locateColDbl)
 	.def("removeColDbl", &dfbuild::removeColDbl)
 	.def("locateRowDbl", &dfbuild::locateRowDbl)
-	.def("insertRowDbl", &dfbuild::insertRowDbl)
+	// .def("insertRowDbl", &dfbuild::insertRowDbl)
 	.def("toIndxColDbl", &dfbuild::toIndxColDbl)
 	.def("insertColStr", &dfbuild::insertColStr)
 	.def("locateColStr", &dfbuild::locateColStr)
 	.def("removeColStr", &dfbuild::removeColStr)
 	.def("locateRowStr", &dfbuild::locateRowStr)
-	.def("insertRowStr", &dfbuild::insertRowStr)
+	// .def("insertRowStr", &dfbuild::insertRowStr)
 	.def("toIndxColStr", &dfbuild::toIndxColStr)
-	.def("GetNodeRowsInt", &dfbuild::GetNodeRowsInt)
-	.def("GetNodeRowsDbl", &dfbuild::GetNodeRowsDbl)
-	.def("GetNodeRowsStr", &dfbuild::GetNodeRowsStr)
+	// .def("GetNodeRowsInt", &dfbuild::GetNodeRowsInt)
+	// .def("GetNodeRowsDbl", &dfbuild::GetNodeRowsDbl)
+	// .def("GetNodeRowsStr", &dfbuild::GetNodeRowsStr)
 	.def_readwrite("col_int", &dfbuild::col_int)
     ;
 }
