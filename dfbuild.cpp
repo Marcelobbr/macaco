@@ -26,98 +26,98 @@
 
 
 struct dfbuild{
-    std::map<std::string, std::vector<int>> col_int;
-    std::map<std::string,std::vector<double>> col_double;
-    std::map<std::string,std::vector<std::string>> col_string;
-    std::map<std::string,treeIndexing<int>> int_trees;
-    std::map<std::string,treeIndexing<double>> double_trees;
-    std::map<std::string,treeIndexing<std::string>> string_trees;
-    void insertColInt(std::string col_name,  boost::python::list& l)
+    std::map<std::string, std::vector<int>> cInt;
+    std::map<std::string,std::vector<double>> cDbl;
+    std::map<std::string,std::vector<std::string>> cStr;
+    std::map<std::string,treeIndexing<int>> tInt;
+    std::map<std::string,treeIndexing<double>> tDbl;
+    std::map<std::string,treeIndexing<std::string>> tStr;
+    void insertColInt(std::string col_name,  boost::python::list& listA)
     {
-    std::vector<int> X; int token;
-    for (int i = 0; i < len(l);){
-        token = boost::python::extract<int>(l[i++]);
-        X.push_back(token);
+    std::vector<int> X; int element;
+    for (int i = 0; i < len(listA);){
+        element = boost::python::extract<int>(listA[i++]);
+        X.push_back(element);
         }
-    col_int[col_name] = X;
+    cInt[col_name] = X;
     }
     
     
     
-    void insertColDbl(std::string col_name,  boost::python::list& l)
+    void insertColDbl(std::string col_name,  boost::python::list& listA)
     {
-    std::vector<double> X; double token;
-    for (int i = 0; i < len(l);){
-        token = boost::python::extract<double>(l[i++]);
-        X.push_back(token);
+    std::vector<double> X; double element;
+    for (int i = 0; i < len(listA);){
+        element = boost::python::extract<double>(listA[i++]);
+        X.push_back(element);
         }
-    col_double[col_name] = X;
+    cDbl[col_name] = X;
     }
 
     
     
-    void insertColStr(std::string col_name,  boost::python::list& l)
+    void insertColStr(std::string col_name,  boost::python::list& listA)
     {
-    std::vector<std::string> X; std::string token;
-    for (int i = 0; i < len(l);){
-        token = boost::python::extract<std::string>(l[i++]);
-        X.push_back(token);
+    std::vector<std::string> X; std::string element;
+    for (int i = 0; i < len(listA);){
+        element = boost::python::extract<std::string>(listA[i++]);
+        X.push_back(element);
         }
-    col_string[col_name] = X;
+    cStr[col_name] = X;
     }
     
     
     
-    void removeColInt(std::string col_name,  boost::python::list& l)
+    void removeColInt(std::string col_name)
     {
-    col_int.erase(col_name);
+    cInt.erase(col_name);
     }
     
     
 
-    void removeColDbl(std::string col_name,  boost::python::list& l)
+    void removeColDbl(std::string col_name)
     {
-        col_double.erase(col_name);
+        cDbl.erase(col_name);
     }
 
 
 
-    void removeColStr(std::string col_name,  boost::python::list& l)
+    void removeColStr(std::string col_name)
     {
-        col_string.erase(col_name);
+        cStr.erase(col_name);
     }
 
 
 
     boost::python::list locateColInt(std::string col_name)
     {
-        boost::python::list l;
-        for (auto i: col_int[col_name])    {
-            l.append(i);
+        boost::python::list listA;
+        for (auto i: cInt[col_name])    {
+            listA.append(i);
         }
-        return l;
+        return listA;
     }
 
 
 
     boost::python::list locateColDbl(std::string col_name)
     {
-        boost::python::list l;
-        for (auto i: col_double[col_name])    {
-            l.append(i);
+        boost::python::list listA;
+        for (auto i: cDbl[col_name])    {
+            listA.append(i);
         }
-        return l;
+        return listA;
     }
 
 
 
     boost::python::list locateColStr(std::string col_name)
     {
-        boost::python::list l;
-        for (auto i: col_string[col_name])    {
-            l.append(i);
+        boost::python::list listA;
+        for (auto i: cStr[col_name])    {
+            listA.append(i);
         }
-        return l;
+        return listA;
     }
 
 
@@ -127,7 +127,7 @@ struct dfbuild{
         int row; boost::python::list result;
         for (int i = 0; i < len(rows) ;){
             row = boost::python::extract<int>(rows[i++]);
-            result.append(col_int[col_name][row]);
+            result.append(cInt[col_name][row]);
         }
         return result;
     }
@@ -139,7 +139,7 @@ struct dfbuild{
         int row; boost::python::list result;
         for (int i = 0; i < len(rows) ;){
             row = boost::python::extract<int>(rows[i++]);
-            result.append(col_double[col_name][row]);
+            result.append(cDbl[col_name][row]);
         }
         return result;
     }
@@ -151,121 +151,51 @@ struct dfbuild{
         int row; boost::python::list result;
         for (int i = 0; i < len(rows) ;){
             row = boost::python::extract<int>(rows[i++]);
-            result.append(col_string[col_name][row]);
+            result.append(cStr[col_name][row]);
         }
         return result;
     }
 
 
 
-    // void insertRowInt(std::string col_name,  boost::python::list& l){
-    //     for (int i = 0; i < len(l) ;){
-    //            col_int[col_name].push_back(boost::python::extract<int>(l[i++]));
-    //        }
-    // }
 
 
 
-    // void insertRowDbl(std::string col_name,  boost::python::list& l){
-    //     for (int i = 0; i < len(l) ;){
-    //            col_double[col_name].push_back(boost::python::extract<double>(l[i++]));
-    //        }
-    // }
 
-
-
-    // void insertRowStr(std::string col_name,  boost::python::list& l){
-    //     for (int i = 0; i < len(l) ;){
-    //            col_string[col_name].push_back(boost::python::extract<std::string>(l[i++]));
-    //        }
-    // }
-
-
-
-    void toIndxColInt(std::string col_name,  boost::python::list & l)
+    void toIndxColInt(std::string col_name)
     {
-        treeIndexing<int> tree;
-        for (int i = 0; i < col_int[col_name].size(); i)    {
-            tree.insertRow(col_int[col_name][i],i++);
+        treeIndexing<int> bst;
+        for (int i = 0; i < cInt[col_name].size(); )    {
+            bst.insertRow(cInt[col_name][i],i++);
         }
-        int_trees[col_name] = tree;
+        tInt[col_name] = bst;
     }
 
 
 
-    void toIndxColDbl(std::string col_name,  boost::python::list & l)
+    void toIndxColDbl(std::string col_name)
     {
-        treeIndexing<double> tree;
-        for (int i = 0; i < col_double[col_name].size(); i)    {
-            tree.insertRow(col_double[col_name][i],i++);
+        treeIndexing<double> bst;
+        for (int i = 0; i < cDbl[col_name].size(); )    {
+            bst.insertRow(cDbl[col_name][i],i++);
         }
-        double_trees[col_name] = tree;
+        tDbl[col_name] = bst;
     }
 
 
 
-    void toIndxColStr(std::string col_name,  boost::python::list & l)
+    void toIndxColStr(std::string col_name)
     {
-        treeIndexing<std::string> tree;
-        for (int i = 0; i < col_string[col_name].size(); i)    {
-            tree.insertRow(col_string[col_name][i],i++);
+        treeIndexing<std::string> bst;
+        for (int i = 0; i < cStr[col_name].size(); )    {
+            bst.insertRow(cStr[col_name][i],i++);
         }
-        string_trees[col_name] = tree;
+        tStr[col_name] = bst;
     }
 
 
 
-    // boost::python::list GetNodeRowsInt(std::string col_name,  boost::python::list & nodes){
-    //     boost::python::list result;
-    //     int X;
-    //     std::set<int> Y;
-    //     std::vector<int> partial;
-    //     for (int i = 0; i < len(nodes) ;){
-    //         X = boost::python::extract<int>(nodes[i++]);
-    //         Y = int_trees[col_name].locateRow(X);
-    //         partial.insert(partial.end(), Y.begin(), Y.end());
-    //     }
-    //     for (int i = 0; i < partial.size() ;)    {
-    //         result.append(partial[i++]);
-    //     }
-    //     return result;
-    // }
 
-
-
-    // boost::python::list GetNodeRowsDbl(std::string col_name,  boost::python::list & nodes){
-    //     boost::python::list result;
-    //     double X;
-    //     std::set<int> Y;
-    //     std::vector<int> partial;
-    //     for (int i = 0; i < len(nodes) ;){
-    //         X = boost::python::extract<double>(nodes[i++]);
-    //         Y = double_trees[col_name].locateRow(X);
-    //         partial.insert(partial.end(), Y.begin(), Y.end());
-    //     }
-    //     for (int i = 0; i < partial.size() ;)    {
-    //         result.append(partial[i++]);
-    //     }
-    //     return result;
-    // }
-
-
-
-    // boost::python::list GetNodeRowsStr(std::string col_name,  boost::python::list & nodes){
-    //     boost::python::list result;
-    //     std::string X;
-    //     std::set<int> Y;
-    //     std::vector<int> partial;
-    //     for (int i = 0; i < len(nodes) ;){
-    //         X = boost::python::extract<std::string>(nodes[i++]);
-    //         Y = string_trees[col_name].locateRow(X);
-    //         partial.insert(partial.end(), Y.begin(), Y.end());
-    //     }
-    //     for (int i = 0; i < partial.size() ;)    {
-    //         result.append(partial[i++]);
-    //     }
-    //     return result;
-    // }
 };
 
 
@@ -278,23 +208,17 @@ BOOST_PYTHON_MODULE(dfbuild) {
 	.def("locateColInt", &dfbuild::locateColInt)
 	.def("removeColInt", &dfbuild::removeColInt)
 	.def("locateRowInt", &dfbuild::locateRowInt)
-	// .def("insertRowInt", &dfbuild::insertRowInt)
 	.def("toIndxColInt", &dfbuild::toIndxColInt)
 	.def("insertColDbl", &dfbuild::insertColDbl)
 	.def("locateColDbl", &dfbuild::locateColDbl)
 	.def("removeColDbl", &dfbuild::removeColDbl)
 	.def("locateRowDbl", &dfbuild::locateRowDbl)
-	// .def("insertRowDbl", &dfbuild::insertRowDbl)
 	.def("toIndxColDbl", &dfbuild::toIndxColDbl)
 	.def("insertColStr", &dfbuild::insertColStr)
 	.def("locateColStr", &dfbuild::locateColStr)
 	.def("removeColStr", &dfbuild::removeColStr)
 	.def("locateRowStr", &dfbuild::locateRowStr)
-	// .def("insertRowStr", &dfbuild::insertRowStr)
 	.def("toIndxColStr", &dfbuild::toIndxColStr)
-	// .def("GetNodeRowsInt", &dfbuild::GetNodeRowsInt)
-	// .def("GetNodeRowsDbl", &dfbuild::GetNodeRowsDbl)
-	// .def("GetNodeRowsStr", &dfbuild::GetNodeRowsStr)
-	.def_readwrite("col_int", &dfbuild::col_int)
+	.def_readwrite("cInt", &dfbuild::cInt)
     ;
 }

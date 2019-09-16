@@ -84,13 +84,6 @@ public:
         print(pRoot);
         cout << endl;
     }
-
-    // std::set<int> locateRow(Ttrees nd) {
-    //     Node<Ttrees> **p;
-    //     find(nd, p);
-    //     return (*p)->rows;
-    // }
-
     void insertRow(Ttrees nd, int row) 
     {
         Node<Ttrees> **p;
@@ -100,13 +93,6 @@ public:
         }
         (*p)->rows.insert(row);
     }
-
-    // void insertNode(Ttrees nd) {
-    //     Node<Ttrees> **p;
-    //     if (!find(nd, p)) {
-    //         *p = new Node<Ttrees>(nd);
-    //     }
-    // }
 };
 
 //END OF HEADER
