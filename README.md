@@ -14,6 +14,11 @@ Here is a list of allowed operations:
 * locateRow(column_name): shows list of values from a specific row
 * toIndxCol(column): indexes column values using optimization algorithm from Binary-Search Tree
 * show(): shows all data table in a way which resembles pandas dataframe
+* summary(): summarizes data. It has 3 variations:
+    * "columns": returns a list of data columns
+    * "dtypes": prints data types
+    * "info": similar to pandas info
+
 * plot(columnA, columnB, how='lineplot'):  plots a 2d graphic using data from 2 columns. It has 2 variations:
     * 'lineplot'
     * 'scatterplot'
@@ -27,9 +32,9 @@ This is a final project related to the class Estrutura de Dados e Algoritmos at 
 
 ## Files List
 * macaco.py: main module which imports c++ functionalities and translate them to python syntax. 
-* test_from_macaco.ipynb: jupyter notebook file which imports macaco.py and does tests with all macaco methods to verify its functionalities
+* macaco_DEMO.ipynb: jupyter notebook file which imports macaco.py and does tests with all macaco methods to verify its functionalities. `This file is intended to demonstrate all the project capabilities`.
 * test_from_note.ipynb: similar to the version above, but the methods are built inside the notebook. It is a better alternative than above to prototype new methods.
-* dfbuilder.cpp: main C++ file whose functionalities macaco.py imports
+* dfbuilder.cpp: main C++ file whose functionalities macaco.py imports.
 * treeIndexing.cpp: BST algorithm to optimize indexation whose methods are imported and used by dfbuilder.cpp
 * gen_shared_lib.sh: a compiler which compiles c++ code to shared library. It compiles dfbuilder.cpp
 * dfbuilder.so: the resulting shared library from the gen_shared_lib.sh compilation
