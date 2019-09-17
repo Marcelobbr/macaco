@@ -13,11 +13,13 @@ Here is a list of allowed operations:
 * locateCel(column_name): shows value from a specific cell
 * locateRow(column_name): shows list of values from a specific row
 * toIndxCol(column): indexes column values using optimization algorithm from Binary-Search Tree
-* show(): shows all table data in a way very similar to pandas dataframe
-* plot(columnA, columnB):  plots a 2d graphic using data from 2 columns
+* show(): shows all data table in a way which resembles pandas dataframe
+* plot(columnA, columnB, how='lineplot'):  plots a 2d graphic using data from 2 columns. It has 2 variations:
+    * 'lineplot'
+    * 'scatterplot'
 
 ## Team members
-* Lucas
+* Lucas Ribeiro
 * [Marcelo B. Barata Ribeiro](https://www.linkedin.com/in/marcelo-barata-ribeiro-213b8733/)
 
 ## Background
